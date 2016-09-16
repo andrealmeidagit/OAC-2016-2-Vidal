@@ -4,5 +4,6 @@ dados: .asciiz "hello world"
 li $v0, 4
 la $a0, dados
 syscall
+
 li $v0, 10
 syscall
