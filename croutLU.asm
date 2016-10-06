@@ -11,9 +11,9 @@
 
 .data
 #matrizes
-mat_A:	 .space	 324	#limite de espaco: matriz 9x9
-mat_L:	 .space	 324
-mat_U:	 .space	 324
+mat_A:	 .space	 512	#limite de espaco: matriz 8x8
+mat_L:	 .space	 512
+mat_U:	 .space	 512
 #textos de interacao com o usuario
 output1: .asciiz "Qual o numero de linhas? (max 9) <ENTER>\n"
 output2: .asciiz "Qual o numero de colunas? (max 9) <ENTER>\n"
@@ -228,16 +228,17 @@ um:	 .double 1
 	.data 
 	tab:	.asciiz	"	"
 	endl:	.asciiz	"\n"
+	.align 3
 	.text
 	#push
-	subi $sp, $sp, 32
-	sdc1 $f22, 0($sp)
-	sw $t0, 8($sp)
-	sw $t1, 12($sp)
-	sw $t2, 16($sp)
-	sw $t3, 20($sp)
-	sw $t4, 24($sp)
-	sw $t5, 28($sp)
+	addi $sp, $sp, 36
+	sw $t0, 0($sp)
+	sw $t1, 4($sp)
+	sw $t2, 8($sp)
+	sw $t3, 12($sp)
+	sw $t4, 16($sp)
+	sw $t5, 20($sp)
+	sdc1 $f22, 24($sp)
 	
 	addu $t0, $zero, %matrixAddress
 	addu $t1, $zero, $zero
@@ -258,14 +259,14 @@ um:	 .double 1
 	blt $t1, %lines, lineloop
 	
 	#pop
-	ldc1 $f22, 0($sp)
-	lw $t0, 8($sp)
-	lw $t1, 12($sp)
-	lw $t2, 16($sp)
-	lw $t3, 20($sp)
-	lw $t4, 24($sp)
-	lw $t5, 28($sp)
-	addi $sp, $sp, 32
+	lw $t0, 0($sp)
+	lw $t1, 4($sp)
+	lw $t2, 8($sp)
+	lw $t3, 12($sp)
+	lw $t4, 16($sp)
+	lw $t5, 20($sp)
+	ldc1 $f22, 24($sp)
+	addi $sp, $sp, 36
 .end_macro
 
 .macro cvt_elem_coord (%inp, %lin, %i, %j)
@@ -385,7 +386,7 @@ diagonal:	#varre a diagonal principal da matriz
 	add $t3, $t3, $t0
 	sll $t3, $t3, 3	#offset de 8 bytes
 	add $t3, $t3, Rmat_L
-	sdc1 $f22, ($t3)	#armazena "1" na diagonal
+	sdc1 $f22, 0($t3)	#armazena "1" na diagonal
 	addi $t0, $t0, 1	#incremento
 ble $t0, nColunas, diagonal
 
