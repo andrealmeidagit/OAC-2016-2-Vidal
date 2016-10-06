@@ -45,159 +45,159 @@ um:	 .double 1
 .macro push		#aloca memoria e empilha tudo
 	#registradores
 	addi $sp, $sp, 128
-	sw $0, -128($sp)
-	sw $1, -124($sp)
-	sw $2, -120($sp)
-	sw $3, -116($sp)
-	sw $4, -112($sp)
-	sw $5, -108($sp)
-	sw $6, -104($sp)
-	sw $7, -100($sp)
-	sw $8, -96($sp)
-	sw $9, -92($sp)
-	sw $10, -88($sp)
-	sw $11, -84($sp)
-	sw $12, -80($sp)
-	sw $13, -76($sp)
-	sw $14, -72($sp)
-	sw $15, -68($sp)
-	sw $16, -64($sp)
-	sw $17, -60($sp)
-	sw $18, -56($sp)
-	sw $19, -52($sp)
-	sw $20, -48($sp)
-	sw $21, -44($sp)
-	sw $22, -40($sp)
-	sw $23, -36($sp)
-	sw $24, -32($sp)
-	sw $25, -28($sp)
-	sw $26, -24($sp)
-	sw $27, -20($sp)
-	sw $28, -16($sp)
-	sw $29, -12($sp)
-	sw $30, -8($sp)
-	sw $31, -4($sp)
+	sw $0, 124($sp)
+	sw $1, 120($sp)
+	sw $2, 116($sp)
+	sw $3, 112($sp)
+	sw $4, 108($sp)
+	sw $5, 104($sp)
+	sw $6, 100($sp)
+	sw $7, 96($sp)
+	sw $8, 92($sp)
+	sw $9, 88($sp)
+	sw $10, 84($sp)
+	sw $11, 80($sp)
+	sw $12, 76($sp)
+	sw $13, 72($sp)
+	sw $14, 68($sp)
+	sw $15, 64($sp)
+	sw $16, 60($sp)
+	sw $17, 56($sp)
+	sw $18, 52($sp)
+	sw $19, 48($sp)
+	sw $20, 44($sp)
+	sw $21, 40($sp)
+	sw $22, 36($sp)
+	sw $23, 32($sp)
+	sw $24, 28($sp)
+	sw $25, 24($sp)
+	sw $26, 20($sp)
+	sw $27, 16($sp)
+	sw $28, 12($sp)
+	sw $29, 8($sp)
+	sw $30, 4($sp)
+	sw $31, 0($sp)
 	
 	#HI e LO
 	mfhi $t0
 	mflo $t1
-	addi $sp, $sp, 8
-	sw $t0, -8($sp)
-	sw $t1, -4($sp)
+	subi $sp, $sp, 8
+	sw $t0, 4($sp)
+	sw $t1, 0($sp)
 	
 	#Coprocessador 1
-	addi $sp, $sp, 128
-	swc1 $f0, -128($sp)
-	swc1 $f1, -124($sp)
-	swc1 $f2, -120($sp)
-	swc1 $f3, -116($sp)
-	swc1 $f4, -112($sp)
-	swc1 $f5, -108($sp)
-	swc1 $f6, -104($sp)
-	swc1 $f7, -100($sp)
-	swc1 $f8, -96($sp)
-	swc1 $f9, -92($sp)
-	swc1 $f10, -88($sp)
-	swc1 $f11, -84($sp)
-	swc1 $f12, -80($sp)
-	swc1 $f13, -76($sp)
-	swc1 $f14, -72($sp)
-	swc1 $f15, -68($sp)
-	swc1 $f16, -64($sp)
-	swc1 $f17, -60($sp)
-	swc1 $f18, -56($sp)
-	swc1 $f19, -52($sp)
-	swc1 $f20, -48($sp)
-	swc1 $f21, -44($sp)
-	swc1 $f22, -40($sp)
-	swc1 $f23, -36($sp)
-	swc1 $f24, -32($sp)
-	swc1 $f25, -28($sp)
-	swc1 $f26, -24($sp)
-	swc1 $f27, -20($sp)
-	swc1 $f28, -16($sp)
-	swc1 $f29, -12($sp)
-	swc1 $f30, -8($sp)
-	swc1 $f31, -4($sp)
+	subi $sp, $sp, 128
+	sdc1 $f0, 124($sp)
+	#sdc1 $f1, -124($sp)
+	sdc1 $f2, 116($sp)
+	#sdc1 $f3, -116($sp)
+	sdc1 $f4, 108($sp)
+	#sdc1 $f5, -108($sp)
+	sdc1 $f6, 100($sp)
+	#sdc1 $f7, -100($sp)
+	sdc1 $f8, 92($sp)
+	#sdc1 $f9, -92($sp)
+	sdc1 $f10, 84($sp)
+	#sdc1 $f11, -84($sp)
+	sdc1 $f12, 76($sp)
+	#sdc1 $f13, -76($sp)
+	sdc1 $f14, 68($sp)
+	#sdc1 $f15, -68($sp)
+	sdc1 $f16, 60($sp)
+	#sdc1 $f17, -60($sp)
+	sdc1 $f18, 52($sp)
+	#sdc1 $f19, -52($sp)
+	sdc1 $f20, 44($sp)
+	#sdc1 $f21, -44($sp)
+	sdc1 $f22, 36($sp)
+	#sdc1 $f23, -36($sp)
+	sdc1 $f24, 28($sp)
+	#sdc1 $f25, -28($sp)
+	sdc1 $f26, 20($sp)
+	#sdc1 $f27, -20($sp)
+	sdc1 $f28, 12($sp)
+	#sdc1 $f29, -12($sp)
+	sdc1 $f30, 4($sp)
+	#sdc1 $f31, -4($sp)
 .end_macro
 	
 .macro pop		#resgata tudo da pilha e libera memoria
 	#Coprocessador 1
-	lwc1 $f0, -128($sp)
-	lwc1 $f1, -124($sp)
-	lwc1 $f2, -120($sp)
-	lwc1 $f3, -116($sp)
-	lwc1 $f4, -112($sp)
-	lwc1 $f5, -108($sp)
-	lwc1 $f6, -104($sp)
-	lwc1 $f7, -100($sp)
-	lwc1 $f8, -96($sp)
-	lwc1 $f9, -92($sp)
-	lwc1 $f10, -88($sp)
-	lwc1 $f11, -84($sp)
-	lwc1 $f12, -80($sp)
-	lwc1 $f13, -76($sp)
-	lwc1 $f14, -72($sp)
-	lwc1 $f15, -68($sp)
-	lwc1 $f16, -64($sp)
-	lwc1 $f17, -60($sp)
-	lwc1 $f18, -56($sp)
-	lwc1 $f19, -52($sp)
-	lwc1 $f20, -48($sp)
-	lwc1 $f21, -44($sp)
-	lwc1 $f22, -40($sp)
-	lwc1 $f23, -36($sp)
-	lwc1 $f24, -32($sp)
-	lwc1 $f25, -28($sp)
-	lwc1 $f26, -24($sp)
-	lwc1 $f27, -20($sp)
-	lwc1 $f28, -16($sp)
-	lwc1 $f29, -12($sp)
-	lwc1 $f30, -8($sp)
-	lwc1 $f31, -4($sp)
-	subi $sp, $sp, 128
+	ldc1 $f0, 124($sp)
+	#ldc1 $f1, -124($sp)
+	ldc1 $f2, 116($sp)
+	#ldc1 $f3, -116($sp)
+	ldc1 $f4, 108($sp)
+	#ldc1 $f5, -108($sp)
+	ldc1 $f6, 100($sp)
+	#ldc1 $f7, -100($sp)
+	ldc1 $f8, 92($sp)
+	#ldc1 $f9, -92($sp)
+	ldc1 $f10, 84($sp)
+	#ldc1 $f11, -84($sp)
+	ldc1 $f12, 76($sp)
+	#ldc1 $f13, -76($sp)
+	ldc1 $f14, 68($sp)
+	#ldc1 $f15, -68($sp)
+	ldc1 $f16, 60($sp)
+	#ldc1 $f17, -60($sp)
+	ldc1 $f18, 52($sp)
+	#ldc1 $f19, -52($sp)
+	ldc1 $f20, 44($sp)
+	#ldc1 $f21, -44($sp)
+	ldc1 $f22, 36($sp)
+	#ldc1 $f23, -36($sp)
+	ldc1 $f24, 28($sp)
+	#ldc1 $f25, -28($sp)
+	ldc1 $f26, 20($sp)
+	#ldc1 $f27, -20($sp)
+	ldc1 $f28, 12($sp)
+	#ldc1 $f29, -12($sp)
+	ldc1 $f30, 4($sp)
+	#ldc1 $f31, -4($sp)
+	addi $sp, $sp, 128
 	
 	#Hi e LO
-	lw $t0, -8($sp)
-	lw $t1, -4($sp)
+	lw $t0, 4($sp)
+	lw $t1, 0($sp)
 	mthi $t0
 	mtlo $t1
-	subi $sp, $sp, 8
+	addi $sp, $sp, 8
 	
 	#registradores CPU
-	lw $0, -128($sp)
-	lw $1, -124($sp)
-	lw $2, -120($sp)
-	lw $3, -116($sp)
-	lw $4, -112($sp)
-	lw $5, -108($sp)
-	lw $6, -104($sp)
-	lw $7, -100($sp)
-	lw $8, -96($sp)
-	lw $9, -92($sp)
-	lw $10, -88($sp)
-	lw $11, -84($sp)
-	lw $12, -80($sp)
-	lw $13, -76($sp)
-	lw $14, -72($sp)
-	lw $15, -68($sp)
-	lw $16, -64($sp)
-	lw $17, -60($sp)
-	lw $18, -56($sp)
-	lw $19, -52($sp)
-	lw $20, -48($sp)
-	lw $21, -44($sp)
-	lw $22, -40($sp)
-	lw $23, -36($sp)
-	lw $24, -32($sp)
-	lw $25, -28($sp)
-	lw $26, -24($sp)
-	lw $27, -20($sp)
-	lw $28, -16($sp)
-	lw $29, -12($sp)
-	lw $30, -8($sp)
-	lw $31, -4($sp)
-	subi $sp, $sp, 128
+	lw $0, 124($sp)
+	lw $1, 120($sp)
+	lw $2, 116($sp)
+	lw $3, 112($sp)
+	lw $4, 108($sp)
+	lw $5, 104($sp)
+	lw $6, 100($sp)
+	lw $7, 96($sp)
+	lw $8, 92($sp)
+	lw $9, 88($sp)
+	lw $10, 84($sp)
+	lw $11, 80($sp)
+	lw $12, 76($sp)
+	lw $13, 72($sp)
+	lw $14, 68($sp)
+	lw $15, 64($sp)
+	lw $16, 60($sp)
+	lw $17, 56($sp)
+	lw $18, 52($sp)
+	lw $19, 48($sp)
+	lw $20, 44($sp)
+	lw $21, 40($sp)
+	lw $22, 36($sp)
+	lw $23, 32($sp)
+	lw $24, 28($sp)
+	lw $25, 24($sp)
+	lw $26, 20($sp)
+	lw $27, 16($sp)
+	lw $28, 12($sp)
+	lw $29, 8($sp)
+	lw $30, 4($sp)
+	lw $31, 0($sp)
+	addi $sp, $sp, 128
 .end_macro	
 
 
@@ -229,7 +229,16 @@ um:	 .double 1
 	tab:	.asciiz	"	"
 	endl:	.asciiz	"\n"
 	.text
-	push
+	#push
+	subi $sp, $sp, 32
+	sdc1 $f22, 0($sp)
+	sw $t0, 8($sp)
+	sw $t1, 12($sp)
+	sw $t2, 16($sp)
+	sw $t3, 20($sp)
+	sw $t4, 24($sp)
+	sw $t5, 28($sp)
+	
 	addu $t0, $zero, %matrixAddress
 	addu $t1, $zero, $zero
 	la $t3, tab
@@ -247,20 +256,29 @@ um:	 .double 1
 		blt $t2, %columns, columnloop
 		print_string ($t4)	#print "endl" - pula linha
 	blt $t1, %lines, lineloop
-	pop
+	
+	#pop
+	ldc1 $f22, 0($sp)
+	lw $t0, 8($sp)
+	lw $t1, 12($sp)
+	lw $t2, 16($sp)
+	lw $t3, 20($sp)
+	lw $t4, 24($sp)
+	lw $t5, 28($sp)
+	addi $sp, $sp, 32
 .end_macro
 
 .macro cvt_elem_coord (%inp, %lin, %i, %j)
-	addi $sp, $sp, 4 #push
-	sw $t0, -4($sp) #salva o valor de $t0 na pilha para que esse nao seja alterado
+	subi $sp, $sp, 4 #push
+	sw $t0, 0($sp) #salva o valor de $t0 na pilha para que esse nao seja alterado
 	subi $t0, %inp, 1
 	div $t0, %lin
 	mflo %i #linha
 	mfhi %j #coluna
 	addi %i, %i, 1
 	addi %j, %j, 1
-	lw $t0, -4($sp)	#libera $t0 da pilha
-	subi $sp, $sp, 4 #pop
+	lw $t0, 0($sp)	#libera $t0 da pilha
+	addi $sp, $sp, 4 #pop
 .end_macro
 
 
@@ -268,10 +286,15 @@ um:	 .double 1
 .text
 	#########
 	# START #
-	#########	
+	#########
+		
+la Rmat_A, mat_A
+la Rmat_L, mat_L
+la Rmat_U, mat_U
+
 
 #############################################################################
-#	STEP 1: IO 
+#	IO 
 #############################################################################
 
 pedeLC:
@@ -304,8 +327,7 @@ numvalido:
 addiu $t0, $zero, 0
 mul $t1, nLinhas, nColunas
 #addiu $t1, $zero, 9	#alterar aqui para fazer NxN
-la Rmat_A, mat_A
-addu $t2, $zero, Rmat_A	#usa temporario $t3 para preservar o valor de $s0
+addu $t2, $zero, Rmat_A	#usa temporario $t2 para preservar o valor de $s0
 get_matrix:		#loop para obter a matriz 3x3
 	addiu $t0, $t0, 1
 	cvt_elem_coord ($t0, nLinhas, $t5, $t6)
@@ -330,12 +352,49 @@ get_matrix:		#loop para obter a matriz 3x3
 blt $t0, $t1, get_matrix	#fim loop get_matrix
 
 
+################################################################################
+#mostra a matriz A
 la $t4, OmatA
 print_string ($t4)
 print_matrix (Rmat_A, nLinhas, nColunas)
+################################################################################
 
 
+#############################################################################
+#	Crout's method
+#############################################################################
 
+#	Algoritmo:
+#
+#1o passo: a diagonal principal da matriz L e setada em 1 em todos os seus elementos
+#2o passo: a primeira linha da matriz U e copiada da matriz A elemento a elemento
+#3o passo: os outros valores dessas matrizes sao definidos coluna a coluna de acordo
+#	   com as equacoes (2.3.12) e (2.3.13) do livro
+#
+
+	##
+	##	1o passo
+	################################
+
+li $t0, 0	#condicao de parada
+la $t4, um
+ldc1 $f22, 0($t4)	#armazena "1" em ponto flutuante em $f20
+diagonal:	#varre a diagonal principal da matriz
+	#algo: alpha_ii = (i-1)*nColunas + (j-1)  , i==j
+	mul $t3, $t0, nColunas #$t0 = (j-1) = (i-1)
+	add $t3, $t3, $t0
+	sll $t3, $t3, 3	#offset de 8 bytes
+	add $t3, $t3, Rmat_L
+	sdc1 $f22, ($t3)	#armazena "1" na diagonal
+	addi $t0, $t0, 1	#incremento
+ble $t0, nColunas, diagonal
+
+################################################################################
+#mostra a matriz L
+la $t4, OmatL
+print_string ($t4)
+print_matrix (Rmat_L, nLinhas, nColunas)
+################################################################################
 
 
 exit
