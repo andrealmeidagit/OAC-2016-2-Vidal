@@ -40,8 +40,12 @@ output4: .asciiz "o elemento da matriz:\n"
 # $f2 = alpha
 # $f4 = beta
 # $f6 = gamma
-#
-# $f16+ = temp
+# $f8 = b2
+# $f10 = b3
+# $f12 = c2
+# $f14 = c3
+# $f16 = d3
+# $f18+ = temp
 
 
 
@@ -98,16 +102,16 @@ blt $t0, $t1, get_matrix	#fim loop get_matrix
 #alpha = a10/a00
 
 #carrega a10 - 4o elemento da matriz A
-ldc1 $f16, 24($s0)	#pula 3 elementos de 8 bytes => 3*8=24
+ldc1 $f18, 24($s0)	#pula 3 elementos de 8 bytes => 3*8=24
 #carrega a00 - 1o elemento da matriz A
-ldc1 $f18, 0($s0)	#primeiro elemento
-div.d $f2, $f16, $f18	#calcula alpha
+ldc1 $f20, 0($s0)	#primeiro elemento
+div.d $f2, $f18, $f20	#calcula alpha
 
 # beta = a20/a00
 
 #carrega s20 - 7o elemento da matriz A
-ldc1 $f20, 48($s0)	#pula 6 elementos de 8 bytes => 6*8=48
-div.d $f4, $f20, $f18	#calcula beta
+ldc1 $f22, 48($s0)	#pula 6 elementos de 8 bytes => 6*8=48
+div.d $f4, $f22, $f20	#calcula beta
 
 #############################################################################
 #	STEP 3: kill a10 and a20 - gauss elimination
@@ -115,8 +119,22 @@ div.d $f4, $f20, $f18	#calcula beta
 
 #valor de b2
 #b2 = a01*alpha - a11
-
-
+ldc1 $f24, 8($s0) #carrega a01 - offset de 1*8=8
+ldc1 $f26, 32($s0)	#carrega a11 - offset de 4*8=32
+mul.d $f8, $f2, $f24
+sub.d $f8, $f8, $f26	#calcula b2
+#valor de b3
+#b3 = a02*alpha - a12
+ldc1 $f28, 16($s0) #carrega a02 - offset de 2*8=16
+ldc1 $f30, 40($s0)	#carrega a12 - offset de 5*8=40
+mul.d $f10, $f2, $f28
+sub.d $f10, $f10, $f30	#calcula b3
+#valor de c2
+#c2 = a01*beta - a21
+ldc1 $f24, 8($s0) #carrega a01 - offset de 1*8=8
+ldc1 $f26, 32($s0)	#carrega a11 - offset de 4*8=32
+mul.d $f8, $f2, $f24
+sub.d $f8, $f8, $f26	#calcula b2
 
 
 	#######
